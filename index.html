@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Qiyue (George) Zhang — Machine Learning Researcher</title>
+<meta name="description" content="Qiyue (George) Zhang — CS undergraduate at Rice University researching LLM systems and machine learning for science." />
+<style>
+  :root{
+    --paper:#F6F8FB;
+    --paper-2:#FFFFFF;
+    --ink:#16202E;
+    --muted:#5A6472;
+    --accent:#1B4965;
+    --accent-soft:#2E6389;
+    --gold:#9A7B3F;
+    --line:#E3E7ED;
+    --line-strong:#D2D9E2;
+    --max:1080px;
+    --col:820px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .serif{font-family:Georgia,"Times New Roman",Cambria,serif;}
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;text-underline-offset:3px;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,248,251,.82);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--max);margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+  }
+  .brand{font-family:Georgia,serif;font-weight:700;letter-spacing:.2px;font-size:16px;}
+  .brand span{color:var(--accent);}
+  .nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0;}
+  .nav-links a{
+    color:var(--muted);font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;
+  }
+  .nav-links a:hover{color:var(--accent);text-decoration:none;}
+  @media(max-width:640px){ .nav-links{display:none;} }
+
+  /* ---------- Layout shell ---------- */
+  main{max-width:var(--max);margin:0 auto;padding:0 28px;}
+  section{padding:64px 0;border-top:1px solid var(--line);}
+  section:first-of-type{border-top:none;}
+  .wrap{max-width:var(--col);margin:0 auto;}
+
+  .eyebrow{
+    font-family:ui-monospace,"SF Mono",Menlo,monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);
+    display:flex;align-items:center;gap:12px;margin:0 0 22px;
+  }
+  .eyebrow::after{content:"";height:1px;flex:1;background:var(--line-strong);}
+
+  h2.section-title{
+    font-family:Georgia,serif;font-weight:700;font-size:clamp(26px,4vw,34px);
+    line-height:1.15;margin:0 0 8px;text-wrap:balance;letter-spacing:-.01em;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:88px 0 72px;position:relative;overflow:hidden;}
+  .hero .wrap{position:relative;z-index:2;}
+  .hero-kicker{
+    font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 18px;
+  }
+  h1{
+    font-family:Georgia,serif;font-weight:700;letter-spacing:-.02em;
+    font-size:clamp(40px,7vw,68px);line-height:1.02;margin:0 0 6px;text-wrap:balance;
+  }
+  h1 .accent{color:var(--accent);}
+  .hero-sub{
+    font-size:clamp(18px,2.4vw,22px);color:var(--ink);max-width:34ch;
+    margin:20px 0 0;line-height:1.5;
+  }
+  .hero-sub strong{color:var(--accent);font-weight:600;}
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;
+    font-family:ui-monospace,Menlo,monospace;font-size:13.5px;color:var(--muted);
+  }
+  .hero-meta a{color:var(--accent);}
+  .hero-meta .dot{color:var(--line-strong);}
+  /* faint decorative rule grid behind hero */
+  .hero-grid{
+    position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px);
+    background-size:100% 34px;
+    -webkit-mask-image:linear-gradient(to bottom,transparent,#000 8%,#000 55%,transparent);
+            mask-image:linear-gradient(to bottom,transparent,#000 8%,#000 55%,transparent);
+  }
+
+  /* ---------- About ---------- */
+  .lede{font-size:19.5px;line-height:1.7;color:var(--ink);}
+  .lede + .lede{margin-top:18px;}
+  .lede strong{font-weight:600;}
+  .focus-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px;
+  }
+  .focus{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:20px 20px 22px;
+  }
+  .focus h3{
+    font-family:Georgia,serif;font-size:17px;margin:0 0 6px;color:var(--accent);letter-spacing:0;
+  }
+  .focus p{margin:0;font-size:14.5px;color:var(--muted);line-height:1.55;}
+  @media(max-width:720px){ .focus-grid{grid-template-columns:1fr;} }
+
+  /* ---------- Research entries ---------- */
+  .entry{
+    display:grid;grid-template-columns:150px 1fr;gap:28px;
+    padding:34px 0;border-top:1px solid var(--line);
+  }
+  .entry:first-child{border-top:none;padding-top:8px;}
+  .entry-rail{
+    font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--muted);
+    display:flex;flex-direction:column;gap:8px;padding-top:5px;
+  }
+  .entry-rail .dates{color:var(--ink);font-weight:600;letter-spacing:.01em;}
+  .entry-rail .loc{color:var(--muted);}
+  .chip{
+    align-self:flex-start;font-family:ui-monospace,Menlo,monospace;
+    font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:3px 9px;border-radius:999px;border:1px solid var(--line-strong);
+    color:var(--accent-soft);background:#EEF3F8;
+  }
+  .entry-body h3{
+    font-family:Georgia,serif;font-size:21px;line-height:1.25;margin:0 0 6px;letter-spacing:-.005em;
+  }
+  .entry-role{
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 12px;
+    font-size:13.5px;color:var(--muted);
+  }
+  .badge{
+    font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--gold);border:1px solid #E4D6B8;background:#FBF6EA;
+    padding:2px 8px;border-radius:5px;
+  }
+  .advisor{color:var(--muted);}
+  .advisor b{color:var(--ink);font-weight:600;}
+  ul.points{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;}
+  ul.points li{position:relative;padding-left:20px;font-size:15.5px;line-height:1.6;color:#2B3644;}
+  ul.points li::before{
+    content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;border-radius:1.5px;
+    background:var(--accent);transform:rotate(45deg);
+  }
+  .num{color:var(--accent);font-weight:600;font-family:ui-monospace,Menlo,monospace;}
+  @media(max-width:680px){
+    .entry{grid-template-columns:1fr;gap:14px;}
+    .entry-rail{flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px;}
+  }
+
+  /* ---------- Publications ---------- */
+  .pub-group{margin-top:8px;}
+  .pub-group + .pub-group{margin-top:34px;}
+  .pub-head{
+    display:flex;align-items:baseline;gap:12px;margin:0 0 16px;
+  }
+  .pub-head h3{
+    font-family:Georgia,serif;font-size:18px;margin:0;letter-spacing:.01em;
+  }
+  .pub-head .count{
+    font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--muted);
+  }
+  .pub{
+    padding:16px 0;border-top:1px solid var(--line);display:flex;gap:16px;
+  }
+  .pub-marker{
+    flex:none;width:4px;border-radius:2px;background:var(--line-strong);margin-top:4px;margin-bottom:4px;
+  }
+  .pub.first .pub-marker{background:var(--gold);}
+  .pub-content{flex:1;}
+  .pub-title{font-size:15.5px;line-height:1.5;color:var(--ink);font-weight:500;}
+  .pub-authors{font-size:14px;color:var(--muted);margin-top:3px;line-height:1.5;}
+  .pub-authors .me{color:var(--ink);font-weight:600;}
+  .pub-venue{
+    font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--accent-soft);margin-top:6px;
+  }
+  .pub-note{color:var(--muted);}
+  .legend{font-size:12.5px;color:var(--muted);margin-top:22px;font-style:italic;}
+
+  /* ---------- Skills / footer ---------- */
+  .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:6px;}
+  .skill-block h3{
+    font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 14px;
+  }
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-size:13.5px;background:var(--paper-2);border:1px solid var(--line-strong);
+    color:#2B3644;padding:5px 12px;border-radius:6px;
+  }
+  .tag.key{border-color:#BFD1DE;background:#EEF3F8;color:var(--accent);font-weight:600;}
+  @media(max-width:640px){ .skills-grid{grid-template-columns:1fr;} }
+
+  .edu{
+    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px;
+    padding:20px 22px;background:var(--paper-2);border:1px solid var(--line);border-radius:10px;margin-top:34px;
+  }
+  .edu .school{font-family:Georgia,serif;font-size:18px;font-weight:700;}
+  .edu .degree{color:var(--muted);font-size:15px;}
+  .edu .when{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--accent);}
+
+  footer{
+    border-top:1px solid var(--line);margin-top:20px;
+  }
+  .foot-inner{
+    max-width:var(--col);margin:0 auto;padding:44px 28px 60px;
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center;
+  }
+  .foot-name{font-family:Georgia,serif;font-size:17px;font-weight:700;}
+  .foot-contact{
+    display:flex;flex-wrap:wrap;gap:8px 18px;font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--muted);
+  }
+  .foot-contact a{color:var(--accent);}
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+</style>
+</head>
+<body>
+
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <div class="brand">Q<span>.</span>Z</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <header class="hero" id="top">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="wrap">
+        <p class="hero-kicker">Machine Learning Researcher</p>
+        <h1>Qiyue <span class="accent">(George)</span><br>Zhang</h1>
+        <p class="hero-sub">
+          CS undergraduate at Rice University working across two frontiers of applied ML —
+          <strong>LLM systems</strong> and <strong>machine learning for science</strong>.
+        </p>
+        <div class="hero-meta">
+          <span>Houston, TX</span>
+          <span class="dot">/</span>
+          <a href="mailto:qz51@rice.edu">qz51@rice.edu</a>
+          <span class="dot">/</span>
+          <a href="tel:+17133253726">+1 (713) 325-3726</a>
+          <span class="dot">/</span>
+          <a href="https://linkedin.com/in/george-zhang" target="_blank" rel="noopener">linkedin.com/in/george-zhang</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap reveal">
+        <p class="eyebrow">About</p>
+        <p class="lede">
+          I build machine-learning systems and study where they break. My work spans
+          <strong>LLM routing and multi-agent efficiency</strong> — understanding the limits of routing
+          models and designing interpretable alternatives — and
+          <strong>ML for science</strong>, from survival modeling in cancer genomics to virtual metrology
+          in semiconductor fabrication.
+        </p>
+        <p class="lede">
+          Across projects I care about the same thing: methods that are rigorous, reproducible, and
+          honest about what they actually improve. I've authored or co-authored work spanning NeurIPS,
+          ACL, and the VLSI Journal.
+        </p>
+        <div class="focus-grid">
+          <div class="focus">
+            <h3>LLM Systems</h3>
+            <p>Routing, multi-agent efficiency, and reasoning-effort control — benchmarks, interpretable routers, and the limits of correctness prediction.</p>
+          </div>
+          <div class="focus">
+            <h3>ML for Science</h3>
+            <p>Survival modeling in IDH-mutant glioma and ML-driven virtual metrology — turning noisy real-world data into reproducible, decision-ready signal.</p>
+          </div>
+          <div class="focus">
+            <h3>Foundations</h3>
+            <p>Statistical modeling and end-to-end ML pipelines in Python and R, with an eye for evaluation that matches the real objective.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow">Research &amp; Experience</p>
+          <h2 class="section-title">What I've been building</h2>
+        </div>
+
+        <!-- 1 -->
+        <article class="entry reveal">
+          <div class="entry-rail">
+            <span class="dates">May 2026 — Present</span>
+            <span class="loc">Houston, TX</span>
+            <span class="chip">LLM Systems</span>
+          </div>
+          <div class="entry-body">
+            <h3>Interpretable, Embedding-Free LLM Router</h3>
+            <div class="entry-role">
+              <span class="badge">Co-first author</span>
+              <span class="advisor">Prof. <b>Jiarong Xing</b> · Rice University</span>
+            </div>
+            <ul class="points">
+              <li>Building a rule-based router that selects the answering model from readable lexical and structural features via an LLM-in-the-loop rule-evolution loop — <em>no neural encoder on the routing path</em>.</li>
+              <li>Showed surface and lexical features match dense-embedding routers on all five routing benchmarks, recasting the assumed "semantic wall" as a weak-feature-extractor artifact rather than a fundamental limit.</li>
+              <li>On EmbedLLM, <span class="num">7</span> human-readable rules reach <span class="num">0.662</span> test accuracy — beating a tuned embedding-KNN router (0.652), the single best model (0.607), and 7 of 8 neural encoders.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="entry reveal">
+          <div class="entry-rail">
+            <span class="dates">May 2026 — Present</span>
+            <span class="loc">Houston, TX</span>
+            <span class="chip">LLM Systems</span>
+          </div>
+          <div class="entry-body">
+            <h3>Multi-Turn LLM Routing with Reasoning-Effort Control</h3>
+            <div class="entry-role">
+              <span class="badge">Co-first author</span>
+              <span class="advisor">Prof. <b>Jiarong Xing</b> · Rice University</span>
+            </div>
+            <ul class="points">
+              <li>Building toward a unified router that jointly controls reasoning effort and model choice across the turns of an agentic task — separating compute-bound failures (more thinking suffices) from capability-bound ones (a stronger model is needed).</li>
+              <li>Grounding the design in an offline (model &times; effort) oracle mapping accuracy/cost frontiers, with a decision-regime decomposition (raise-effort vs. must-switch) and a source-verified survey establishing the open gap.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="entry reveal">
+          <div class="entry-rail">
+            <span class="dates">May 2026 — Present</span>
+            <span class="loc">Boston, MA</span>
+            <span class="chip">ML for Science</span>
+          </div>
+          <div class="entry-body">
+            <h3>Machine Learning for IDH-Mutant Glioma Survival</h3>
+            <div class="entry-role">
+              <span class="badge">First author</span>
+              <span class="advisor">Prof. <b>Jingyi Wu</b> · Harvard Medical School (BIDMC)</span>
+            </div>
+            <ul class="points">
+              <li>Building survival-analysis pipelines in R that link DNA-methylation and gene-expression features to overall survival in IDH-mutant glioma.</li>
+              <li>Running Kaplan–Meier and Cox proportional-hazards analyses on large-scale genomic cohorts (e.g., TCGA) to quantify the prognostic value of candidate loci and molecular signatures.</li>
+              <li>Curating and harmonizing methylation, expression, and clinical-outcome data into reproducible cohorts, with stratified subgroup analyses that isolate IDH-mutant signal.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="entry reveal">
+          <div class="entry-rail">
+            <span class="dates">Sep 2025 — May 2026</span>
+            <span class="loc">Houston, TX</span>
+            <span class="chip">LLM Systems</span>
+          </div>
+          <div class="entry-body">
+            <h3>The Routing Plateau: Limits of LLM Routers</h3>
+            <div class="entry-role">
+              <span class="advisor">NeurIPS 2026 submission · Prof. <b>Jiarong Xing</b> · Rice University</span>
+            </div>
+            <ul class="points">
+              <li>Benchmarked <span class="num">21</span> routing methods (classifier, retrieval, pairwise-ranking, IRT, contrastive, cascade) across five benchmarks and six encoders under one protocol, revealing a consistent "routing plateau" 10–30 points below the per-query oracle.</li>
+              <li>Traced the plateau to a correctness-prediction bottleneck via hard-query stratification, oracle-gap attribution, and pairwise error-exchange analysis.</li>
+              <li>Built a new <span class="num">300K</span>-query benchmark (2.8M query/model correctness labels, per-call cost, nine commercial LLMs); data scaling, stronger encoders, and fine-tuning recover up to <span class="num">14.6%</span> of the oracle gap.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="entry reveal">
+          <div class="entry-rail">
+            <span class="dates">Feb 2025 — May 2026</span>
+            <span class="loc">Houston, TX</span>
+            <span class="chip">LLM Systems</span>
+          </div>
+          <div class="entry-body">
+            <h3>Efficiency Methods for LLM Multi-Agent Systems</h3>
+            <div class="entry-role">
+              <span class="advisor">ACL ARR 2026 submission · Prof. <b>Ben Hu</b> · Rice University</span>
+            </div>
+            <ul class="points">
+              <li>Contributed to a controlled, MAS-demanding benchmark re-evaluating five pruning methods (AgentPrune, AgentDropout, AGP, DAGP, GPTSwarm) under a shared model, agent, and runtime contract.</li>
+              <li>Cost and structural pipelines show that many reported efficiency gains stem from graph collapse or easy pruning rather than genuine compression.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="entry reveal">
+          <div class="entry-rail">
+            <span class="dates">May 2025 — Aug 2025</span>
+            <span class="loc">Beijing, China</span>
+            <span class="chip">Applied ML</span>
+          </div>
+          <div class="entry-body">
+            <h3>ML-Driven Virtual Metrology in Semiconductor Fabrication</h3>
+            <div class="entry-role">
+              <span class="advisor"><i>Integration, the VLSI Journal</i> (2026) · Prof. <b>Wenjian Yu</b> · Tsinghua University</span>
+            </div>
+            <ul class="points">
+              <li>Built an ML virtual-metrology framework predicting HDPCVD dielectric thin-film thickness across 14/55/130 nm nodes directly from production logs (recipes, runsheets, metrology).</li>
+              <li>Engineered the data-curation and feature pipeline (recipe-based imputation, IQR outlier removal, near-zero-variance filtering) and implemented CNN, RNN, MLP, and XGBoost models.</li>
+              <li>Introduced a specification-aware metric (ACC@X) aligning evaluation with fab tolerances; XGBoost reached <span class="num">R²&nbsp;=&nbsp;0.92</span> and <span class="num">79.5%</span> within-tolerance accuracy at 14 nm.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="entry reveal">
+          <div class="entry-rail">
+            <span class="dates">2025</span>
+            <span class="loc">Remote</span>
+            <span class="chip">LLM Systems</span>
+          </div>
+          <div class="entry-body">
+            <h3>Secret Prompt Recovery in LLMs</h3>
+            <div class="entry-role">
+              <span class="badge">First author</span>
+              <span class="advisor">Prof. <b>David Woodruff</b> · Carnegie Mellon University</span>
+            </div>
+            <ul class="points">
+              <li>Developed a dual-model XGBoost aggregation approach improving secret-prompt recovery accuracy, precision, and recall — published in <i>Applied and Computational Engineering</i>.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow">Publications &amp; Preprints</p>
+          <h2 class="section-title">Selected writing</h2>
+        </div>
+
+        <div class="pub-group reveal">
+          <div class="pub-head"><h3>Published</h3><span class="count">2</span></div>
+          <div class="pub">
+            <div class="pub-marker"></div>
+            <div class="pub-content">
+              <div class="pub-title">Machine-Learning-Driven Prediction of Thin-Film Parameters for Dielectric Deposition in Semiconductor Fabrication</div>
+              <div class="pub-authors">H. Wen†, E. Zhao†, <span class="me">Q. Zhang</span>, R. Xiang, W. Yu</div>
+              <div class="pub-venue">Integration, the VLSI Journal · 107:102617 · 2026</div>
+            </div>
+          </div>
+          <div class="pub first">
+            <div class="pub-marker"></div>
+            <div class="pub-content">
+              <div class="pub-title">Dual-Model Aggregation for High-Accuracy Secret Prompt Recovery in LLMs</div>
+              <div class="pub-authors"><span class="me">Q. Zhang</span>, Y. Zheng, T. Zhang, C. Yang, J. Zheng</div>
+              <div class="pub-venue">Applied and Computational Engineering · 199:37–50 · 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-group reveal">
+          <div class="pub-head"><h3>Under Review</h3><span class="count">2</span></div>
+          <div class="pub">
+            <div class="pub-marker"></div>
+            <div class="pub-content">
+              <div class="pub-title">The Routing Plateau: Understanding and Breaking the Accuracy Limits of LLM Routers</div>
+              <div class="pub-authors">Y. Lu, <span class="me">Q. Zhang</span>, S. Zhang, Z. Yu, Z. Wang, H. Chen, J. Xing</div>
+              <div class="pub-venue">Under review · NeurIPS 2026</div>
+            </div>
+          </div>
+          <div class="pub">
+            <div class="pub-marker"></div>
+            <div class="pub-content">
+              <div class="pub-title">Rethinking the Evaluation of Efficiency Methods for Multi-Agent Systems</div>
+              <div class="pub-authors">J. Zhang, L. Zhang, P. Lu, <span class="me">Q. Zhang</span>, Y.-N. Chuang, Z. Li, S. Xu, V. Chaudhary, H. Chen</div>
+              <div class="pub-venue">Under review · ACL Rolling Review (ARR) 2026</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-group reveal">
+          <div class="pub-head"><h3>In Preparation</h3><span class="count">3</span></div>
+          <div class="pub first">
+            <div class="pub-marker"></div>
+            <div class="pub-content">
+              <div class="pub-title">Methylation- and Expression-Based Survival Modeling in IDH-Mutant Glioma</div>
+              <div class="pub-authors"><span class="me">Q. Zhang</span>, et al. <span class="pub-note">— first author</span></div>
+              <div class="pub-venue">In preparation</div>
+            </div>
+          </div>
+          <div class="pub first">
+            <div class="pub-marker"></div>
+            <div class="pub-content">
+              <div class="pub-title">Interpretable, Embedding-Free LLM Routing</div>
+              <div class="pub-authors"><span class="me">Q. Zhang†</span>, et al. <span class="pub-note">— co-first author</span></div>
+              <div class="pub-venue">In preparation · target ICLR 2027</div>
+            </div>
+          </div>
+          <div class="pub first">
+            <div class="pub-marker"></div>
+            <div class="pub-content">
+              <div class="pub-title">Reasoning-Effort vs. Model Switching in Multi-Turn LLM Routing</div>
+              <div class="pub-authors"><span class="me">Q. Zhang†</span>, et al. <span class="pub-note">— co-first author</span></div>
+              <div class="pub-venue">In preparation · target ICLR 2027</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="legend">† equal contribution · <span class="me" style="color:var(--ink);font-weight:600">bold</span> denotes my name · in-preparation titles are tentative.</p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="wrap reveal">
+        <p class="eyebrow">Skills &amp; Education</p>
+        <h2 class="section-title">Toolkit</h2>
+        <div class="skills-grid">
+          <div class="skill-block">
+            <h3>Languages &amp; Frameworks</h3>
+            <div class="tags">
+              <span class="tag key">Python</span>
+              <span class="tag key">R</span>
+              <span class="tag key">PyTorch</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">scikit-learn</span>
+              <span class="tag">Hugging Face</span>
+              <span class="tag">MATLAB</span>
+              <span class="tag">Java</span>
+              <span class="tag">C</span>
+              <span class="tag">Git</span>
+            </div>
+          </div>
+          <div class="skill-block">
+            <h3>Methods &amp; Spoken</h3>
+            <div class="tags">
+              <span class="tag key">Survival analysis</span>
+              <span class="tag key">Statistical modeling</span>
+              <span class="tag">ML pipelines</span>
+              <span class="tag">Benchmark design</span>
+              <span class="tag">English — fluent</span>
+              <span class="tag">Mandarin — native</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="edu">
+          <div>
+            <div class="school">Rice University</div>
+            <div class="degree">B.S. in Computer Science · Minor in Data Science</div>
+          </div>
+          <div class="when">Houston, TX &nbsp;·&nbsp; Sep 2023 — May 2027 (Expected)</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contact">
+    <div class="foot-inner">
+      <div class="foot-name">Qiyue (George) Zhang</div>
+      <div class="foot-contact">
+        <a href="mailto:qz51@rice.edu">qz51@rice.edu</a>
+        <a href="tel:+17133253726">+1 (713) 325-3726</a>
+        <a href="https://linkedin.com/in/george-zhang" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+      if(reduce || !('IntersectionObserver' in window)){
+        els.forEach(function(e){ e.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+        });
+      }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+      els.forEach(function(e){ io.observe(e); });
+    })();
+  </script>
+
+</body>
+</html>
